@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Front page</title>
+		<link rel="stylesheet" href="../static/global.css">
+		<link rel="stylesheet" href="../static/fp-styles.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	</head>
+	<body> 
+		<div class="header">
+			<div class="container">
+				<span class='h-left'>
+					<a href="/"><img src="../static/alien-gopher.png" alt="" style="max-height: 70px;margin-right:10px"></a><h2>Front page</h2>
+				</span>
+				<span class='h-right'>
+					{{if .User}}
+						<img src="{{.User.AvatarURL}}" style='display:inline-block;border-radius:15px;vertical-align:middle' alt=""><h5 style='display:inline-block;vertical-align:middle; margin-left:10px'>{{ .User.Name }}</h5>
+					{{else}}
+						<h3><a href="/auth/facebook">Login with Facebook</a></h3>
+					{{end}}
+				</span>
+			</div>
+		</div>
+		<div class="container">
+			<div class="list-wrapper">
+				<div class="list-add">
+					<a class="list-add-btn" href="/new"> + </a>
+				</div>
+				<!-- repeat for every discussion topic -->
+				{{ range $v := .Topics}}
+				<div class="list-item-wrapper">
+					<span class="likes-wrapper">
+						<form action="/vote-up" method="POST">
+							<input type="hidden" name="returnAddr" value="/">
+							<input type="hidden" name="topicID" value="{{$v.ID}}">
+							<button type="submit"><i class="material-icons">keyboard_arrow_up</i></button>
+						</form>
+						<p>{{$v.Likes}}</p>
+						<form action="/vote-down" method="POST">
+							<input type="hidden" name="returnAddr" value="/">
+							<input type="hidden" name="topicID" value="{{$v.ID}}">
+							<button type="submit"><i class="material-icons">keyboard_arrow_down</i></button>
+						</form>
+						
+					</span>
+					<div class="list-item">
+						<p class='list-link'><a href="/topic/id={{ $v.ID }}">{{ $v.Title }}</a></p>
+						<p class="list-meta">submited {{ $v.Created.Day}} {{ $v.Created.Month}}</p>
+					</div>
+				</div>
+				{{ end }}
+			</div>
+		</div>
+	</body>
+</html>

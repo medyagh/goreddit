@@ -1,0 +1,21 @@
+label{
+	display:block;
+	padding: 10px 0px;
+}
+
+.mk-topic-form input{
+	padding: 5px;
+	font-size: 14pt;
+}
+.mk-topic-form textarea{
+	font-size:12pt;
+	height: 140px;
+	width: 30%;
+}
+.mk-topic-form button{
+	background-color:#E1EBF5;
+	border: 1px solid #375EAB;
+	color:#375EAB;
+	margin-top: 10px;
+	display:block;
+}

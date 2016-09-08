@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>New Discussion</title>
+		<link rel="stylesheet" href="../static/global.css">
+		<link rel="stylesheet" href="../static/mk-topic.css">
+	</head>
+	<body>
+		<div class="header">
+			<div class="container">
+				<span class='h-left'>
+					<h2>New discussion</h2>
+				</span>
+				<span class='h-right'>
+					{{if .User}}
+						<img src="{{.User.AvatarURL}}" style='display:inline-block;border-radius:15px;vertical-align:middle' alt=""><h5 style='display:inline-block;vertical-align:middle; margin-left:10px'>{{ .User.Name }}</h5>
+					{{else}}
+						<h3><a href="/auth/facebook">Login with Facebook</a></h3>
+					{{end}}
+				</span>
+			</div>
+		</div>
+		<div class="container">
+			<div class="body">
+				<form action="/create" method="POST" class="mk-topic-form">
+					<label>Title</label>
+					<input type="text" name="title" placeholder="Start a new topic">
+					<label>Description</label>
+					<textarea name="description" placeholder="Give some details."></textarea>
+					<button type="submit">Start discussion</button>
+				</form>
+			</div>
+		</div>
+			
+		
+	</body>
+</html>

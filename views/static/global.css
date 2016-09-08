@@ -1,0 +1,44 @@
+body {
+	font-family: sans-serif;
+	font-weight: 200;
+	margin: 0px;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0px;
+}
+.container {
+	margin:0 auto;
+	width:70%;
+}
+
+.header {
+	width:100%;
+	background-color:#E1EBF5;
+}
+
+.header span {
+	display:inline-block;
+	padding: 2px 0px 5px 0px;
+	color: #375EAB;
+}
+
+.h-time {
+	width:99%;
+	text-align: right;
+}
+.h-left {
+	text-align:left;
+	width:49.5%;
+	vertical-align:middle;
+}
+
+.h-left a img, h2 {
+	display:inline-block;
+	vertical-align: middle;
+}
+
+.h-right {
+	text-align: right;
+	width:49.5%;
+	vertical-align:middle;
+}

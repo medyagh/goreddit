@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>{{ .Topic.Title }} - Discuss</title>
+		<link rel="stylesheet" href="../static/global.css">
+		<link rel="stylesheet" href="../static/topic.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	</head>
+	<body>
+		<div class="header">
+			<div class="container">
+				<span class="h-left">
+					<a href="/"><img src="../static/alien-gopher.png" alt="" style="max-height: 70px;margin-right:10px"></a><h2>Discuss Go</h2>
+				</span>
+				<span class="h-right">
+					{{if .User}}
+						<img src="{{.User.AvatarURL}}" style='display:inline-block;border-radius:15px;vertical-align:middle' alt=""><h5 style='display:inline-block;vertical-align:middle; margin-left:10px'>{{ .User.Name }}</h5>
+					{{else}}
+						<h3><a href="/auth/facebook">Login with Facebook</a></h3>
+					{{end}}
+				</span>
+			</div>
+		</div>
+		<div class="container">
+			<span class="likes-wrapper">
+				<form action="/vote-up" method="POST">
+					<input type="hidden" name="returnAddr" value="/topic/id={{.Topic.ID}}">
+					<input type="hidden" name="topicID" value="{{.Topic.ID}}">
+					<button type="submit"><i class="material-icons">keyboard_arrow_up</i></button>
+				</form>
+				<p>{{.Topic.Likes}}</p>
+				<form action="/vote-down" method="POST">
+					<input type="hidden" name="returnAddr" value="/topic/id={{.Topic.ID}}">
+					<input type="hidden" name="topicID" value="{{.Topic.ID}}">
+					<button type="submit"><i class="material-icons">keyboard_arrow_down</i></button>
+				</form>
+				
+			</span>
+			<div class="topic-info">
+				<h1>{{ .Topic.Title }}</h1>
+				<h6>posted: {{ .Topic.Created.Month }} {{.Topic.Created.Day}}, {{.Topic.Created.Year}}</h6>
+				<p>{{ .Topic.Description }}</p>
+			</div>
+			<div class="comment-form">
+				<form action="/comment/" method="POST">
+					<input type="hidden" name="topic_ID" value="{{.Topic.ID}}">
+					<textarea type="text" name="comment"></textarea>
+					<button type="submit">Comment</button>
+				</form>
+			</div>
+			<div class="comments-wrapper">
+				{{range $val := .Topic.Comments}}
+					<div class="comment">
+						<h6>{{ $val.Author }}</h6>
+						<p>{{ $val.Comment }}</p>
+					</div>
+				{{end}}
+			</div>
+		</div>
+	</body>
+</html>
