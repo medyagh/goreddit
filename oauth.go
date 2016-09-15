@@ -18,7 +18,7 @@ func init() {
 
 func initAuth() {
 	goth.UseProviders(
-		facebook.New(os.Getenv("FACEBOOK_KEY"), os.Getenv("FACEBOOK_SECRET"), "/auth/facebook/callback"),
+		facebook.New(os.Getenv("FACEBOOK_KEY"), os.Getenv("FACEBOOK_SECRET"), "http://goreddit-v1.us-west-2.elasticbeanstalk.com/auth/facebook/callback"),
 		// twitter.New(os.Getenv("TWITTER_KEY"), os.Getenv("TWITTER_SECRET"), "http://localhost:4949/auth/twitter/callback"),
 	)
 
