@@ -132,7 +132,7 @@ func putItem(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	log.Println("Successfully added item to DynamoDB table.")
-	log.Println(result)
+	http.Redirect(w, r, "/", 301)
 }
 
 func putComment(r *http.Request) {
@@ -163,6 +163,8 @@ func putComment(r *http.Request) {
 		log.Println(err)
 	}
 	log.Println(resp)
+	rurl := "/topic/id="+item.ID
+	http.Redirect(w, r, rurl, 301)
 }
 
 func upVoteModel(r *http.Request) {
